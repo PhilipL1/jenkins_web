@@ -26,6 +26,7 @@ pipeline {
                 printFromFunction()
                 replaceString()
                 hello()
+                helloVariable("PHILIP")
             }
         } 
 
