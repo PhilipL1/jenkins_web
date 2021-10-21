@@ -32,9 +32,7 @@ pipeline {
         } 
         stage("Test") {
             steps { 
-                sh """
-                cat index.html | grep "Deploy by jenkins job: ${BUILD_NUMBER}"
-                """
+               sh "bash var/script.sh"
                 }
             }   
         stage("Deploy"){
