@@ -34,14 +34,11 @@ pipeline {
         } 
         stage("Test") {
             steps { 
-                script {
-                    sh """
-                    cat index.html | grep "Deploy by jenkins job: {BUILD_NUMBER}"
-                    """
-                } 
+                sh """
+                cat index.html | grep "Deploy by jenkins job: {BUILD_NUMBER}"
+                """
                 }
             }   
-        }
         stage("Deploy"){
             steps{
                 echo "Deploying now"
