@@ -10,12 +10,12 @@ options {
                 echo " Hello this is my first stage "
             }
         }
-    }
+    
     stage('printenv') {
         steps {
             sh "printenv"
         }
-
+    }
     }
 }
 
