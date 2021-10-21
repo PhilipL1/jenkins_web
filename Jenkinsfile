@@ -34,7 +34,9 @@ pipeline {
         } 
         stage("Test") {
             steps {  
-                replaceString().contains("index.html")    
+                def lines = new File('/jenkins_shared/vars/utils.groovy').readLines()
+                def result = lines.findAll { it.contains(%BUILD_NUMBER%) }
+                println result*.toString()   
             }   
         }
         stage("Deploy"){
