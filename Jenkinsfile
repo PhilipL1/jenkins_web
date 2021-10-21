@@ -10,6 +10,7 @@ pipeline {
                 echo 'build stage '
             }
         }
+        parallel {
         stage('Test windows') {
             steps {
                 echo 'Test window '
@@ -20,6 +21,7 @@ pipeline {
                 echo 'Test Linux '
             }
         }
+        } 
         stage('Deploy') {
             steps {
                 echo 'Deploy stage '
