@@ -10,6 +10,7 @@ pipeline {
                 echo 'build stage '
             }
         }
+    }
         stages{
         parallel {
         stage('Test windows') {
@@ -30,4 +31,3 @@ pipeline {
             }
         }
     }
-}
