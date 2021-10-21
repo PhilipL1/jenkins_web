@@ -13,7 +13,7 @@ options {
     }
     stage('printenv') {
         steps {
-            sh ‘printenv’
+            sh "printenv"
         }
 
     }
