@@ -33,12 +33,12 @@ pipeline {
             }
         } 
         stage("Test") {
-            steps {  
-                if(replaceString().contain("${BUILD_NUMBER}")) {
-                    echo "IT IS THERE"
-                else {
-                    echo "NOT THERE"
-                }
+            steps { 
+                script {
+                    sh """
+                    cat index.html | grep "Deploy by jenkins job: {BUILD_NUMBER}"
+                    """
+                } 
                 }
             }   
         }
