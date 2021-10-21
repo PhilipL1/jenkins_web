@@ -32,7 +32,7 @@ pipeline {
         } 
         stage("Test") {
             steps { 
-               sh "bash var/script.sh"
+               sh "bash ./script.sh"
                 }
             }   
         stage("Deploy"){
