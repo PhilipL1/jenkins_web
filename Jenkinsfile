@@ -1,21 +1,24 @@
 pipeline {
     agent any
-options {
+
+    options {
     timestamps()
 }
-
     stages {
         stage('Build') {
             steps {
-                echo " Hello this is my first stage "
+                echo 'build stage '
             }
         }
-    
-    stage('printenv') {
-        steps {
-            sh "printenv"
+        stage('Test') {
+            steps {
+                echo 'Test stage '
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy stage '
+            }
         }
     }
-    }
 }
-
