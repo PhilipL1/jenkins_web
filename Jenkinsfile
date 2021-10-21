@@ -1,39 +1,49 @@
 def printFromFunction() {
-    println("Iam printing from a function")
+    println("I am printing from a function")
+}
+
+def replaceString() {
+    def text = readFile file: "index.html"
 }
 
 pipeline {
+
     agent any
 
     options {
-    timestamps()
-}
-    stages {
-        stage('Build') {
-            steps {
-                echo 'build stage '
-                printFromFunction
-            }
-        }
+        timestamps()
     }
-        stage ('Test') {
-        parallel {
-            
-        stage('Test windows') {
+
+    stages {
+        
+        stage("Build") {
             steps {
-                echo 'Test window '
-            }
-        }
-        stage('Test Linux') {
-            steps {
-                echo 'Test Linux '
-                }
+                echo "Building now"
+                printFromFunction()
             }
         } 
-    }
-        stage('Deploy') {
-            steps {
-                echo 'Deploy stage '
+
+        stage("Test") {
+            parallel {
+
+                stage("Test on Linux"){
+                    steps{
+                        echo "Testing on Linux now"
+                    }       
+                }
+
+                stage("Test on Windows"){
+                    steps{
+                        echo "Testing on Windows now"
+                    }
+                }
+            }
+        }
+        
+        stage("Deploy"){
+            steps{
+                echo "Deploying now"
             }
         }
     }
+}
