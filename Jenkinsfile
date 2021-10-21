@@ -10,9 +10,14 @@ pipeline {
                 echo 'build stage '
             }
         }
-        stage('Test') {
+        stage('Test windows') {
             steps {
-                echo 'Test stage '
+                echo 'Test window '
+            }
+        }
+        stage('Test Linux') {
+            steps {
+                echo 'Test Linux '
             }
         }
         stage('Deploy') {
