@@ -6,4 +6,6 @@ pipeline {
                 echo " Hello this is my first stage "
             }
         }
+    }
+}
 
