@@ -32,14 +32,11 @@ pipeline {
                 }
             }
         } 
-
         stage("Test") {
-            steps {
-                
-            }
-            
+            steps {  
+                replaceString().contains("index.html")    
+            }   
         }
-        
         stage("Deploy"){
             steps{
                 echo "Deploying now"
