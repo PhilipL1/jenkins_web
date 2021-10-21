@@ -11,7 +11,7 @@ pipeline {
             }
         }
     }
-        stages{
+        stages ('Test') {
         parallel {
         stage('Test windows') {
             steps {
