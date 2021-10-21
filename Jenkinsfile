@@ -25,6 +25,7 @@ pipeline {
                 echo "Building now"
                 printFromFunction()
                 replaceString()
+                hello()
             }
         } 
 
