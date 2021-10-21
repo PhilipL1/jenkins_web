@@ -34,7 +34,12 @@ pipeline {
         } 
         stage("Test") {
             steps {  
-                echo 'hello'  
+                if(replaceString().contain("${BUILD_NUMBER}")) {
+                    echo "IT IS THERE"
+                else {
+                    echo "NOT THERE"
+                }
+                }
             }   
         }
         stage("Deploy"){
