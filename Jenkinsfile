@@ -24,7 +24,6 @@ pipeline {
             steps {
                 echo "Building now"
                 printFromFunction()
-                replaceString()
                 hello()
                 helloVariable("PHILIP")
                 script {
