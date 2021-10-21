@@ -23,7 +23,6 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building now"
-                printFromFunction()
                 hello()
                 helloVariable("PHILIP")
                 script {
