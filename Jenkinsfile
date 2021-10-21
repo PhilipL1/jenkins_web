@@ -27,6 +27,9 @@ pipeline {
                 replaceString()
                 hello()
                 helloVariable("PHILIP")
+                script {
+                    utils.printFromFunction()
+                }
             }
         } 
 
