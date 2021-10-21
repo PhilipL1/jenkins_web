@@ -11,5 +11,11 @@ options {
             }
         }
     }
+    stage('printenv') {
+        steps {
+            sh ‘printenv’
+        }
+
+    }
 }
 
