@@ -27,6 +27,7 @@ pipeline {
                 script {
                     utils.replaceString()
                 }
+                sh "mkdir -p docker"
     
             }
         } 
