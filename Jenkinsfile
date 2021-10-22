@@ -1,6 +1,12 @@
 @Library("jenkins_shared") _
 
 pipeline {
+    environment {
+        MYENVVAR = "testenvvar"
+    }
+    parameters {
+        string(name: "Name", defaultValue: 'Philip', description: "your name")
+    }
 
     agent any
 
@@ -13,6 +19,8 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building now"
+                echo "MYENVVAR"
+                echo "${params.Name}"
                 helloVariable("Philip")
                 script {
                     utils.replaceString()
@@ -39,6 +47,7 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             echo "archiving"
