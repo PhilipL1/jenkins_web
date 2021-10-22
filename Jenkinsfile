@@ -23,10 +23,9 @@ pipeline {
         stage("Test") {
             steps{
                 echo "Testing now"
-
                 sh """
-                   chmod +x test.sh
-                   ./test.sh "jenkins... job: ${BUILD_NUMBER}"
+                   chmod +x script.sh
+                   ./script.sh "jenkins... job: ${BUILD_NUMBER}"
                 """
             }       
 
