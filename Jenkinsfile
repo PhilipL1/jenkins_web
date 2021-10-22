@@ -3,7 +3,7 @@
 pipeline {
     environment {
         MYENVVAR = "testenvvar"
-        GITHUB = credentials("github")
+        GITHUB = credentials("jenkins")
     }
     parameters {
         string(name: "Name", defaultValue: 'Philip', description: "your name")
