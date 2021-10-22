@@ -3,6 +3,7 @@
 pipeline {
     environment {
         MYENVVAR = "testenvvar"
+        GITHUB = credentials("github")
     }
     parameters {
         string(name: "Name", defaultValue: 'Philip', description: "your name")
@@ -21,6 +22,7 @@ pipeline {
                 echo "Building now"
                 echo "${MYENVVAR}"
                 echo "${params.Name}"
+                echo "${GITHUB}"
                 helloVariable("Philip")
                 script {
                     utils.replaceString()
