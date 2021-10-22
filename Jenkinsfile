@@ -44,5 +44,8 @@ pipeline {
             echo "archiving"
             archiveArtifacts artifacts: 'index.html', followSymlinks: false
         }
+        cleanup {
+            cleanWs()
+        }
     }
 }
