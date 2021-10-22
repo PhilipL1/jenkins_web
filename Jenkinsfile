@@ -1,14 +1,4 @@
-@Library('jenkins_shared') _
-
-def printFromFunction() {
-    println("I am printing from a function")
-}
-
-def replaceString() {
-    def text = readFile file: "index.html" // put the file as a variable 
-    text = text.replaceAll("%BUILD_NUMBER%", "${BUILD_NUMBER}") // place holder (wherever you see this), replace with this (jenkins built in env varible )
-    writeFile file: "index.html", text:text // put it in the file 
-}
+@Library("jenkins_shared") _
 
 pipeline {
 
@@ -23,22 +13,37 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building now"
-                hello()
-                helloVariable("PHILIP")
+                helloVariable("Philip")
                 script {
                     utils.replaceString()
                 }
             }
         } 
+
         stage("Test") {
-            steps { 
-               sh "bash ./script.sh"
-                }
-            }   
+            steps{
+                echo "Testing now"
+
+                sh """
+                   chmod +x test.sh
+                   ./test.sh "jenkins... job: ${BUILD_NUMBER}"
+                """
+            }       
+
+        }
+        
+        
         stage("Deploy"){
             steps{
                 echo "Deploying now"
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'Http', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'mv index.html /var/www/html', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'index.html')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
+        }
+    }
+    post {
+        always {
+            echo "archiving"
+            archiveArtifacts artifacts: 'index.html', followSymlinks: false
         }
     }
 }
