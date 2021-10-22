@@ -29,6 +29,22 @@ pipeline {
                 }
             }
         } 
+        stage("Docker build") {
+           agent {
+               docker {
+                   image "node:latest"
+                   args "-v ${WORKSPACE}/docker:/home/node"  //share local folder in the node container vice versa
+                   //map the folder : 
+               }
+               steps {
+                   sh """
+                   node --version > /home/node/docker_node_version
+                   npm --version > /home/node/docker_npm_version
+                   """
+               }
+           }     
+
+        }
 
         stage("Test") {
             steps{
@@ -55,8 +71,8 @@ pipeline {
             echo "archiving"
             archiveArtifacts artifacts: 'index.html', followSymlinks: false
         }
-        cleanup {
-            cleanWs()
-        }
+        // cleanup {
+        //     cleanWs()
+        // }
     }
 }
