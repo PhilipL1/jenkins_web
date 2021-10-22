@@ -19,7 +19,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo "Building now"
-                echo "MYENVVAR"
+                echo "${MYENVVAR}"
                 echo "${params.Name}"
                 helloVariable("Philip")
                 script {
